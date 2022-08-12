@@ -30,8 +30,11 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.war'
           
-      - name: rename to ROOT  
-        run: mv build/libs/*.war build/libs/ROOT.war
+      - name: show ls
+        run: ls
+        
+      - name: rename to ROOT
+        run: mv *.war ROOT.war
 
   deploy:
     runs-on: ubuntu-latest
