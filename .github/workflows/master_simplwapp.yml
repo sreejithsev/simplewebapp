@@ -23,18 +23,18 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
+        
+      - name: show ls
+        run: ls '${{ github.workspace }}/target/'
+        
+      - name: rename to ROOT
+        run: mv '${{ github.workspace }}/target/*.war' '${{ github.workspace }}/target/ROOT.war'
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.war'
-          
-      - name: show ls
-        run: ls
-        
-      - name: rename to ROOT
-        run: mv *.war ROOT.war
 
   deploy:
     runs-on: ubuntu-latest
