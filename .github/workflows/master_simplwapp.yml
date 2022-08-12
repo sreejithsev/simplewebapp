@@ -23,12 +23,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-        
-      - name: show ls
-        run: ls '${{ github.workspace }}/target/'
-        
-      - name: rename to ROOT
-        run: mv '${{ github.workspace }}/target/*.war' '${{ github.workspace }}/target/ROOT.war'
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -48,6 +42,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
+        
+      - name: show ls
+        run: ls
+        
+      - name: rename to ROOT
+        run: mv *.war ROOT.war
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
